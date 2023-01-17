@@ -1,3 +1,5 @@
-    n, edges = 7, [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]],
-    hasApple = [False, False, True, False, False, True, False]   # Output: 6
-    print(sol.minTime(n, edges, hasApple))
+    # intervals, newInterval = [[1,3],[6,9]], [2,5]  # Output: [[1,5],[6,9]]
+    # print(sol.insert(intervals, newInterval))
+
+    # intervals,  newInterval = [[1,2],[3,5],[6,7],[8,10],[12,16]], [4,8]     # Output: [[1,2],[3,10],[12,16]]
+    # print(sol.insert(intervals, newInterval))
