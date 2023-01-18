@@ -1,5 +1,4 @@
-    # intervals, newInterval = [[1,3],[6,9]], [2,5]  # Output: [[1,5],[6,9]]
-    # print(sol.insert(intervals, newInterval))
-
-    # intervals,  newInterval = [[1,2],[3,5],[6,7],[8,10],[12,16]], [4,8]     # Output: [[1,2],[3,10],[12,16]]
-    # print(sol.insert(intervals, newInterval))
+        # for i in range(n): dp[n + i] += dp[n + i - 1] + nums[n + i]
+        # dp[n - 1] = nums[n - 1]
+        # for i in range(n - 2, -1, -1): dp[i] += dp[i + 1]
+        # print(dp)
