@@ -41,7 +41,6 @@ class Solution:     ### Solution Passed     T: O（2^n）
         for i in range(n - 1): dfs(nums[i:], [nums[i]])
         return res
 
-
 class Solution_v2:     ### Solution Passed     T: O（2^n）
     def findSubsequences(self, nums: List[int]) -> List[List[int]]:
         res = []
@@ -112,14 +111,12 @@ class Solution_v4:     ### BackTrack
         dfs(0, float("-inf"))
         return list(res)
 
-
 def main():
     sol = Solution()
     sol = Solution_v2()
     sol = Solution_v2_2()
     sol = Solution_v3()
     sol = Solution_v4()
-
 
     nums = [0]          # Output: []
     print(sol.findSubsequences(nums))
@@ -130,5 +127,5 @@ def main():
     nums = [4,4,3,2,1]  # Output: [[4,4]]
     print(sol.findSubsequences(nums))
 
-
-main()
+if __name__ == "__main__":
+    main()
