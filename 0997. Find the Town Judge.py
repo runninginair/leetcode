@@ -98,30 +98,19 @@ class Solution_V2:     ###  One Counter
 
 class Solution_V2_2:     ###  One Counter
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
-        # Combine the 2 counters from the previous one 
-        # Get the difference between the number of people this guy is trusted by and the number of people this guy trusts.
         diff_between_beingTrustedBy_and_trusting = [0] * (n + 1)
-
-        # Going through the trust relations.
         for a,b in trust:
             diff_between_beingTrustedBy_and_trusting[a] -= 1
             diff_between_beingTrustedBy_and_trusting[b] += 1
-
-        # The judge trusting 0 people, and being trusted by n-1 people.
-        # As a result the judge will have the difference as: n-1-0 == n-1
         for i in range(1, n + 1):
             if diff_between_beingTrustedBy_and_trusting[i] == n-1: return i
-
-        # Didn't find a judge
         return -1
-
 
 def main():
     sol = Solution()
     sol = Solution_v1()
     sol = Solution_V2()
     sol = Solution_V2_2()
-
 
     n, trust = 2, [[1,2]]      # Output: 2
     print(sol.findJudge(n, trust))
@@ -132,10 +121,5 @@ def main():
     n, trust = 3, [[1,3],[2,3],[3,1]]      # Output: -1
     print(sol.findJudge(n, trust))
 
-
-
 if __name__ == "__main__":
     main()
-
-
-
