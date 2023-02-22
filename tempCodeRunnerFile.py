@@ -1,7 +1,5 @@
-    # words = ["cat", "cats", "catsdogcats", "dog", "dogcatsdog", "hippopotamuses", "rat", "ratcatdogcat"]
-    # ### Output: ["catsdogcats", "dogcatsdog", "ratcatdogcat"]
-    # print(sol.findAllConcatenatedWordsInADict(words))
+    weights, days = [3,2,2,4,1,4], 3
+    print(sol.shipWithinDays(weights, days))    # Expect Output: 6
 
-    # words = ["cat", "dog", "catdog"]
-    # ### Output: ["catdog"]
-    # print(sol.findAllConcatenatedWordsInADict(words))
+    weights, days = [1,2,3,1,1], 4
+    print(sol.shipWithinDays(weights, days))    # Expect Output: 3
