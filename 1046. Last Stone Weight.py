@@ -1,4 +1,5 @@
 ''' 1046. Last Stone Weight
+
 Easy    3980    76      Add to List     Share
 
 You are given an array of integers stones where stones[i] is the weight of the
@@ -38,21 +39,59 @@ import heapq
 from typing import List
 
 
-class Solution: # 02:09pm
+class Solution:  # 02:09pm       # T: O(n * log(n))  M: T(n)
     def lastStoneWeight(self, stones: List[int]) -> int:
-        stones = [ -1 * stone for stone in stones]
+        stones = [-1 * stone for stone in stones]
         while len(stones) > 1:
             heapq.heapify(stones)
             a = heapq.heappop(stones)
             b = heapq.heappop(stones)
             diff = a - b
             print(a, b, diff, stones)
-            if diff != 0: heapq.heappush(stones, diff)
+            if diff != 0:
+                heapq.heappush(stones, diff)
         return 0 if not stones else -1 * stones[0]
 
+
+class Solution_v2:  # T: O(n * log(n))  M: T(1)
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        for i in range(len(stones)):
+            stones[i] = - stones[i]
+        heapq.heapify(stones)
+        while len(stones) > 1:
+            y = heapq.heappop(stones)
+            x = heapq.heappop(stones)
+            dif = y - x
+            if dif < 0:
+                heapq.heappush(stones, dif)
+        return 0 if not stones else -stones[0]
+
+
+''' Java Solution
+class Solution {
+    public int lastStoneWeight(int[] stones) {
+        PriorityQueue <Integer> maxheap = new PriorityQueue<>(Collections.reverseOrder());
+        for (int stone: stones) maxheap.add(stone);
+        while (maxheap.size() > 1) {
+            int a = maxheap.poll();
+            int b = maxheap.poll();
+            int diff = a - b;
+            if (diff > 0) maxheap.add(diff);
+        }
+        return (maxheap.size() == 0)? 0: maxheap.poll();
+    }
+}
+'''
+
+
 def main():
+
     sol = Solution()
-    stones = [2,7,4,1,8,1]  # Output: 1
+    sol = Solution_v2()
+
+    stones = [2, 7, 4, 1, 8, 1]  # Output: 1
     print(sol.lastStoneWeight(stones))
 
-main()
+
+if __name__ == "__main__":
+    main()

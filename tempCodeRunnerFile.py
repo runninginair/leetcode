@@ -1,5 +1,5 @@
-    weights, days = [3,2,2,4,1,4], 3
-    print(sol.shipWithinDays(weights, days))    # Expect Output: 6
+    s = "leetcode"  # Output: 5
+    print(sol.minInsertions(s))
 
-    weights, days = [1,2,3,1,1], 4
-    print(sol.shipWithinDays(weights, days))    # Expect Output: 3
+    s = "zjveiiwvc" # Output: 5
+    print(sol.minInsertions(s))

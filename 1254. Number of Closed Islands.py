@@ -40,6 +40,9 @@ Submissions:    175,696
 
 '''
 
+from typing import List
+
+
 class Solution:
     def closedIsland(self, grid) -> int:
         m, n = len(grid), len(grid[0])        
@@ -76,8 +79,35 @@ class Solution:
                         if bfs(i, j): res += 1
         return res
 
+class Solution_v2:
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        m, n, cntIsland = len(grid), len(grid[0]), 0
+        if m < 3 or n < 3: return 0
+
+        def bfs(i: int, j: int) -> int:
+            isIsland = True
+            que = [(i, j)]
+            while que:
+                x, y = que.pop()
+                grid[x][y] = -1
+                for p, q in [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]:
+                    if 0 <= p < m and 0 <= q < n and grid[p][q] == 0:
+                        grid[p][q] = -1
+                        if isIsland and (p == 0 or p == m - 1 or q == 0 or q == n - 1):
+                            isIsland = False
+                        que.append((p, q))
+            return 1 if isIsland else 0 
+
+        for i in range(1, m - 1):
+            for j in range(1, n - 1):
+                if grid[i][j] == 0:
+                    cntIsland += bfs(i, j)
+        return cntIsland
+
+
 def main():
     sol = Solution()
+    sol = Solution_v2()
 
     # g = [[1,1,1,1,1,1,1,0],
     #      [1,0,0,0,0,1,1,0],
@@ -86,6 +116,7 @@ def main():
     #      [1,1,1,1,1,1,1,0]]
     # print(sol.closedIsland(g))
         # 0 1 2 3 4 5 6 7 8 9 
+
     g = [[0,0,1,1,0,1,0,0,1,0], # 0
          [1,1,0,1,1,0,1,1,1,0], # 1
          [1,0,1,1,1,0,0,1,1,0], # 2
@@ -95,8 +126,20 @@ def main():
          [1,0,1,0,1,1,0,0,0,1], # 6
          [1,1,1,1,1,1,0,0,0,0], # 7
          [1,1,1,0,0,1,0,1,0,1], # 8
-         [1,1,1,0,1,1,0,1,1,0]] # 9
+         [1,1,1,0,1,1,0,1,1,0]] # 9     # Expect output: 5
     print(sol.closedIsland(g))
 
+    grid = [[1,0,1,1,1,1,0,0,1,0],
+            [1,0,1,1,0,0,0,1,1,1],
+            [0,1,1,0,0,0,1,0,0,0],
+            [1,0,1,1,0,1,0,0,1,0],
+            [0,1,1,1,0,1,0,1,0,0],
+            [1,0,0,1,0,0,1,0,0,0],
+            [1,0,1,1,1,0,0,1,1,0],
+            [1,1,0,1,1,0,1,0,1,1],
+            [0,0,1,1,1,0,1,0,1,1],
+            [1,0,0,1,1,1,1,0,1,1]]      # Expect output: 3
+    print(sol.closedIsland(grid))
 
-main()
+if __name__ == "__main__":
+    main()

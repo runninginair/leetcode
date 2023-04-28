@@ -1,16 +1,19 @@
-''' 87. Scramble String
+''' 0087. Scramble String
 
 Hard       1.9K       978       Companies
 
 We can scramble a string s to get a string t using the following algorithm:
 
 If the length of the string is 1, stop.
+
 If the length of the string is > 1, do the following:
 
  * Split the string into two non-empty substrings at a random index,
    i.e., if the string is s, divide it to x and y where s = x + y.
+
  * Randomly decide to swap the two substrings or to keep them in the same order. 
    i.e., after this step, s may become s = x + y or s = y + x.
+
  * Apply step 1 recursively on each of the two substrings x and y.
 
 Given two strings s1 and s2 of the same length, return true if s2 is a
@@ -29,6 +32,7 @@ Explanation: One possible scenario applied on s1 is:
 "r/g / e/ a/t" --> "r/g / e/ a/t" // random decision is to keep both substrings in the same order.
 The algorithm stops now, and the result string is "rgeat" which is s2.
 As one possible scenario led s1 to be scrambled to s2, we return true.
+
 
 Example 2:
 Input: s1 = "abcde", s2 = "caebd"
@@ -76,9 +80,30 @@ class Solution_v2:     ### YouTuber: Hua Hua
                 return True
         return False
 
+class Solution_v3:      ### Leetcode ID: abdullayevakbar0101
+
+    def isScramble(self, s1: str, s2: str) -> bool:
+        m = {}
+        def func(s1, s2):
+            if (s1, s2) in m:
+                return m[(s1, s2)]
+            if not sorted(s1) == sorted(s2):
+                return False
+            if len(s1) == 1:
+                return True
+            for i in range(1, len(s1)):
+                if func(s1[:i], s2[-i:]) and func(s1[i:], s2[:-i]) or func(s1[:i], s2[:i]) and func(s1[i:], s2[i:]):
+                    m[(s1, s2)] = True
+                    return True
+            m[(s1, s2)] = False
+            return False
+        return func(s1, s2)
+
+
 def main():
-    # sol = Solution()
+    sol = Solution()
     sol = Solution_v2()
+    sol = Solution_v3()
 
     s1, s2 = "great", "rgeat"       # Output: true
     print(sol.isScramble(s1, s2))

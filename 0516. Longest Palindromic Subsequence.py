@@ -48,8 +48,23 @@ class Solution_v1:  ### DP solution
         return dp[0][N - 1]
 
 
+class Solution_v2:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        N, rev_s = len(s), s[::-1]
+        dp = [[0 for _ in range(N + 1)] for _ in range(N + 1)]        
+        for i in range(1, N + 1):
+            for j in range(1, N + 1):
+                if s[j - 1] == rev_s[i - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i][j - 1], dp[i - 1][j])
+        return dp[N][N]
+
+
 def main():
     sol = Solution_v1()
+    sol = Solution_v2()
+
     s = "bbbab"     ### Output: 4
     print(sol.longestPalindromeSubseq(s))
     s = "BABCBAB"   ### Output: 7
@@ -57,4 +72,6 @@ def main():
     s = "cbbd"      ### Output: 2
     print(sol.longestPalindromeSubseq(s))
 
-main()
+
+if __name__ == "__main__":
+    main()
