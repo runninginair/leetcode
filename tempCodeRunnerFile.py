@@ -1,4 +1,11 @@
-    # n = 5
-    # edgeList = [[0, 1, 10], [1, 2, 5], [2, 3, 9], [3, 4, 13]]
-    # queries = [[0, 4, 14], [1, 4, 13]]       # Output: [true,false]
-    # print(sol.distanceLimitedPathsExist(n, edgeList, queries))
+    nums = [3, 5, 6, 7]
+    target = 9    # Output: 4
+    print(sol.numSubseq(nums, target))
+
+    nums = [3, 3, 6, 8]
+    target = 10   # Output: 6
+    print(sol.numSubseq(nums, target))
+
+    nums = [2, 3, 3, 4, 6, 7]
+    target = 12   # Output: 61
+    print(sol.numSubseq(nums, target))
