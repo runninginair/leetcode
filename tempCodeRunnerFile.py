@@ -1,15 +1,2 @@
-    grid = [[0, 1],
-            [1, 0]]                         # Output: 1
-    print(sol.shortestBridge(grid))
-
-    grid = [[0, 1, 0],
-            [0, 0, 0],
-            [0, 0, 1]]                      # Output: 2
-    print(sol.shortestBridge(grid))
-
-    grid = [[1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 1],
-            [1, 0, 1, 0, 1],
-            [1, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1]]                # Output: 1
-    print(sol.shortestBridge(grid))
+    nums, cost = [1,3,5,2], [2,3,1,14]     # Output: 8
+    print(sol.minCost(nums, cost))
